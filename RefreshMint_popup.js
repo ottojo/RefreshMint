@@ -5,6 +5,14 @@ window.onload = function() {
 }
 
 function setupButtonListener() {
+    document.getElementById("durationInput").addEventListener("keyup", function (event) {
+        if (event.code === "Enter") {
+            event.preventDefault();
+            document.getElementById("testbutton").click();
+            window.close();
+        }
+    })
+
 	document.getElementById("testbutton").addEventListener('click',
 	function() {
 		chrome.tabs.query( {
@@ -66,6 +74,7 @@ function requestView() {
 			var span = document.getElementById("currentStatus");
 			span.textContent = msg.current;
 			document.getElementById("durationInput").value = msg.interval;
-		});
+            document.getElementById("durationInput").focus();
+        });
 	});
 }
